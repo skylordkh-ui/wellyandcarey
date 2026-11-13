@@ -9,7 +9,7 @@ export default function Navbar({ onReset }) {
         {/* Brand */}
         <div className="flex items-center gap-2.5 cursor-pointer" onClick={onReset}>
           <img 
-            src="image/welly logo.png" 
+            src="image/welly_logo.png" 
             alt="WellyandCarey Logo" 
             className="w-10 h-10 object-contain rounded-lg"
             onError={(e) => { e.currentTarget.src = 'https://placehold.co/80x80/1c3627/ffffff?text=W'; }}
