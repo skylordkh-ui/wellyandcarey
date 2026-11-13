@@ -6,7 +6,6 @@ import ProductDetailModal from './components/ProductDetailModal.jsx';
 import OrderModal from './components/OrderModal.jsx';
 import AdminDrawer from './components/AdminDrawer.jsx';
 import AuthModal from './components/AuthModal.jsx';
-import ChangePasswordModal from './components/ChangePasswordModal.jsx';
 import AddProductModal from './components/AddProductModal.jsx';
 import { 
   SESSION_KEY_AUTH, 
@@ -55,7 +54,6 @@ export default function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
-  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [isAddProductOpen, setIsAddProductOpen] = useState(false);
 
   // Toast notification
@@ -457,7 +455,6 @@ export default function App() {
         onUpdateStock={handleUpdateStock}
         onDeleteProduct={handleDeleteProduct}
         onOpenAddModal={() => setIsAddProductOpen(true)}
-        onOpenPasswordModal={() => setIsChangePasswordOpen(true)}
         onLogout={handleLogout}
         onNotify={notify}
       />
@@ -466,12 +463,6 @@ export default function App() {
         isOpen={isAuthOpen}
         onClose={() => setIsAuthOpen(false)}
         onSuccess={handleAdminSuccess}
-        onNotify={notify}
-      />
-
-      <ChangePasswordModal 
-        isOpen={isChangePasswordOpen}
-        onClose={() => setIsChangePasswordOpen(false)}
         onNotify={notify}
       />
 

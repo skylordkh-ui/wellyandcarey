@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { 
-  ShieldCheck, X, Settings, LogOut, Download, Plus, 
+  ShieldCheck, X, LogOut, Download, Plus, 
   Trash2, Search 
 } from 'lucide-react';
-import { formatRiel } from '../utils.js';
 
 export default function AdminDrawer({ 
   isOpen, 
@@ -12,7 +11,6 @@ export default function AdminDrawer({
   onUpdateStock, 
   onDeleteProduct, 
   onOpenAddModal, 
-  onOpenPasswordModal, 
   onLogout,
   onNotify
 }) {
@@ -80,13 +78,6 @@ export default function AdminDrawer({
           </div>
           
           <div className="flex items-center gap-2">
-            <button 
-              onClick={onOpenPasswordModal}
-              title="Change master password" 
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition text-sm"
-            >
-              <Settings className="w-4 h-4" />
-            </button>
             <button 
               onClick={onLogout} 
               title="Log out" 
@@ -233,7 +224,7 @@ export default function AdminDrawer({
 
         {/* Drawer Footer */}
         <div className="p-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-500">
-          <span>Auto-saves to browser storage</span>
+          <span>Synced with Firebase Cloud</span>
           <span className="text-emerald-700 font-medium flex items-center gap-1">
             <ShieldCheck className="w-3.5 h-3.5" /> Session Active
           </span>
@@ -243,4 +234,3 @@ export default function AdminDrawer({
     </>
   );
 }
-
