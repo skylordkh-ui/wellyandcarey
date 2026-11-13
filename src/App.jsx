@@ -9,11 +9,15 @@ import AuthModal from './components/AuthModal.jsx';
 import ChangePasswordModal from './components/ChangePasswordModal.jsx';
 import AddProductModal from './components/AddProductModal.jsx';
 import { 
-  STORAGE_KEY_PRODUCTS, 
   SESSION_KEY_AUTH, 
   SESSION_KEY_LAST_ACTIVE, 
   SESSION_TIMEOUT_MS 
 } from './utils.js';
+import { db } from './firebase.js';
+import { 
+  collection, onSnapshot, doc, updateDoc, 
+  deleteDoc, setDoc, writeBatch, getDocs 
+} from 'firebase/firestore';
 import { 
   Search, SlidersHorizontal, MapPin, PhoneCall, 
   Share2, KeyRound, Droplets, ShoppingBag 
@@ -34,19 +38,9 @@ const CONCERNS = [
 ];
 
 export default function App() {
-  // Load products from localStorage or fallback to clean products.json
-  const [products, setProducts] = useState(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY_PRODUCTS);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-      }
-    } catch (e) {
-      console.error("Failed to load products from storage", e);
-    }
-    return initialProductsData;
-  });
+  // Start with local data as immediate fallback
+  const [products, setProducts] = useState(initialProductsData);
+  const [isFirebaseConnected, setIsFirebaseConnected] = useState(false);
 
   // Filter & Search states
   const [searchQuery, setSearchQuery] = useState('');
@@ -74,15 +68,47 @@ export default function App() {
     }, 2500);
   };
 
-  // Sync products state to localStorage
-  const saveProducts = (updated) => {
-    setProducts(updated);
-    try {
-      localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(updated));
-    } catch (e) {
-      console.error("Failed to save products", e);
-    }
-  };
+  // REAL-TIME FIRESTORE SYNCHRONIZATION
+  useEffect(() => {
+    const productsCol = collection(db, 'products');
+
+    // Auto-seed Firestore on first connection if empty
+    const checkAndSeed = async () => {
+      try {
+        const snapshot = await getDocs(productsCol);
+        if (snapshot.empty) {
+          console.log("Seeding initial 25 products to Firestore...");
+          const batch = writeBatch(db);
+          for (const p of initialProductsData) {
+            const pRef = doc(db, 'products', p.id);
+            batch.set(pRef, p);
+          }
+          await batch.commit();
+          console.log("Successfully seeded Firestore!");
+        }
+      } catch (err) {
+        console.warn("Firestore check/seed notice:", err.message);
+      }
+    };
+
+    checkAndSeed();
+
+    // Listen to real-time changes across all devices
+    const unsubscribe = onSnapshot(productsCol, (snapshot) => {
+      if (!snapshot.empty) {
+        const remoteProducts = [];
+        snapshot.forEach((doc) => {
+          remoteProducts.push({ ...doc.data(), id: doc.id });
+        });
+        setProducts(remoteProducts);
+        setIsFirebaseConnected(true);
+      }
+    }, (error) => {
+      console.warn("Firestore real-time listener error, using local fallback:", error.message);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   // Validate admin session
   useEffect(() => {
@@ -122,30 +148,55 @@ export default function App() {
     notify("Logged out successfully");
   };
 
-  const handleUpdateStock = (id, delta) => {
-    const updated = products.map(p => {
-      if (p.id === id) {
-        const newStock = Math.max(0, p.stock + delta);
-        return { ...p, stock: newStock };
-      }
-      return p;
-    });
-    saveProducts(updated);
-    notify("Stock updated");
-  };
-
-  const handleDeleteProduct = (id) => {
+  // REAL-TIME STOCK UPDATE
+  const handleUpdateStock = async (id, delta) => {
     const p = products.find(x => x.id === id);
     if (!p) return;
-    const updated = products.filter(x => x.id !== id);
-    saveProducts(updated);
-    notify(`Deleted "${p.name}"`);
+    const newStock = Math.max(0, p.stock + delta);
+
+    // Optimistic UI update
+    setProducts(prev => prev.map(item => item.id === id ? { ...item, stock: newStock } : item));
+
+    try {
+      const docRef = doc(db, 'products', id);
+      await updateDoc(docRef, { stock: newStock });
+      notify("Stock synced live to cloud");
+    } catch (err) {
+      console.error("Failed to update cloud stock:", err);
+      notify("Stock updated locally");
+    }
   };
 
-  const handleAddProduct = (newProd) => {
-    const updated = [newProd, ...products];
-    saveProducts(updated);
-    notify(`Added "${newProd.name}"`);
+  // REAL-TIME PRODUCT DELETE
+  const handleDeleteProduct = async (id) => {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+
+    // Optimistic UI update
+    setProducts(prev => prev.filter(x => x.id !== id));
+
+    try {
+      await deleteDoc(doc(db, 'products', id));
+      notify(`Deleted "${p.name}" from cloud`);
+    } catch (err) {
+      console.error("Failed to delete from cloud:", err);
+      notify(`Deleted "${p.name}"`);
+    }
+  };
+
+  // REAL-TIME PRODUCT ADD
+  const handleAddProduct = async (newProd) => {
+    // Optimistic UI update
+    setProducts(prev => [newProd, ...prev]);
+
+    try {
+      const docRef = doc(db, 'products', newProd.id);
+      await setDoc(docRef, newProd);
+      notify(`Added "${newProd.name}" to cloud database`);
+    } catch (err) {
+      console.error("Failed to add to cloud:", err);
+      notify(`Added "${newProd.name}" locally`);
+    }
   };
 
   // Filtering Logic
@@ -434,4 +485,3 @@ export default function App() {
     </div>
   );
 }
-
