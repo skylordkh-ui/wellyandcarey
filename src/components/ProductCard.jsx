@@ -1,0 +1,104 @@
+import React from 'react';
+import { formatRiel } from '../utils.js';
+import { Send, Eye } from 'lucide-react';
+
+export default function ProductCard({ product, onSelect, onOrder }) {
+  const isOutOfStock = product.stock <= 0;
+
+  return (
+    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col group">
+      
+      {/* Image Wrap */}
+      <div 
+        className="relative h-56 bg-slate-100 cursor-pointer overflow-hidden flex items-center justify-center p-4"
+        onClick={() => onSelect(product)}
+      >
+        <img 
+          src={product.image} 
+          alt={product.name}
+          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+          onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x300/e2e8f0/64748b?text=Product'; }}
+        />
+        
+        {/* Category Badge */}
+        <span className="absolute top-3 left-3 px-2 py-0.5 rounded-md text-[10px] font-bold bg-slate-900/80 text-white uppercase tracking-wider backdrop-blur-xs">
+          {product.category}
+        </span>
+
+        {/* Stock Badge */}
+        {isOutOfStock ? (
+          <span className="absolute top-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-bold bg-red-100 text-red-700 border border-red-200">
+            Out of Stock
+          </span>
+        ) : product.stock < 5 ? (
+          <span className="absolute top-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+            Low Stock ({product.stock})
+          </span>
+        ) : null}
+      </div>
+
+      {/* Info Body */}
+      <div className="p-4 flex-1 flex flex-col justify-between">
+        <div>
+          <h3 
+            className="font-bold text-sm text-slate-900 hover:text-emerald-700 cursor-pointer line-clamp-1 transition"
+            onClick={() => onSelect(product)}
+            title={product.name}
+          >
+            {product.name}
+          </h3>
+          <p className="text-xs text-slate-500 mt-0.5">{product.size}</p>
+
+          <p className="text-xs text-slate-600 mt-2 line-clamp-2 leading-relaxed">
+            {product.description}
+          </p>
+        </div>
+
+        {/* Price & Action */}
+        <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+          <div>
+            {product.price > 0 ? (
+              <>
+                <span className="text-base font-bold text-slate-900 leading-tight block">
+                  ${Number(product.price).toFixed(2)}
+                </span>
+                <span className="text-[10px] text-slate-400 font-medium">
+                  {formatRiel(product.price)}
+                </span>
+              </>
+            ) : (
+              <span className="text-xs font-semibold text-slate-500">
+                Price on Inquiry
+              </span>
+            )}
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => onSelect(product)}
+              className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition"
+              title="Quick View"
+            >
+              <Eye className="w-4 h-4" />
+            </button>
+            <button
+              disabled={isOutOfStock}
+              onClick={() => onOrder(product)}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                isOutOfStock 
+                  ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                  : 'bg-sky-600 hover:bg-sky-700 text-white shadow-xs'
+              }`}
+            >
+              <Send className="w-3.5 h-3.5" />
+              <span>Order</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  );
+}
+

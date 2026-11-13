@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f4f7f5;
+  --color-brand-100: #e3ece6;
+  --color-brand-200: #c7dad0;
+  --color-brand-600: #2d5a3f;
+  --color-brand-700: #234631;
+  --color-brand-800: #1c3627;
+  --color-brand-900: #14271c;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+

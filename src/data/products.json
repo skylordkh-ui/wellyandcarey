@@ -1,0 +1,397 @@
+[
+  {
+    "id": "SKU-101",
+    "name": "APLB Glutathione Niacinamide Body Lotion",
+    "category": "Moisturizers",
+    "size": "300 ml",
+    "price": 7.5,
+    "stock": 1,
+    "skinType": "All Skin Types / Dull Body Skin",
+    "ingredients": [
+      "12.5% Lipo Gluta Niac Cen",
+      "Glutathione",
+      "Niacinamide",
+      "Centella Asiatica Extract"
+    ],
+    "description": "Moisturizes the body, improves skin elasticity, enhances skin brightness and radiance, and strengthens the skin barrier.",
+    "howToUse": "Apply generously to dry areas of the body after cleansing and massage gently until absorbed.",
+    "image": "image/APLB Glutathione Niacinamide Body Lotion.jpg"
+  },
+  {
+    "id": "SKU-102",
+    "name": "Bunny Brightening Acne Serum",
+    "category": "Serums",
+    "size": "5 ml (0.17 fl oz)",
+    "price": 10.5,
+    "stock": 6,
+    "skinType": "Acne-Prone & Blemish-Prone Skin",
+    "ingredients": [
+      "Niacinamide",
+      "Zinc PCA",
+      "Salicylic Acid",
+      "Brightening Actives"
+    ],
+    "description": "Brightens the skin, helps reduce acne breakouts, fades post-acne dark spots, and smooths while moisturizing the skin.",
+    "howToUse": "Dispense 2-3 drops with the precision dropper onto clean skin before applying moisturizer, morning and night.",
+    "image": "image/Bunny Brightening Acne Serum.jpg"
+  },
+  {
+    "id": "SKU-103",
+    "name": "by365 Powdery UV Cream - No Color",
+    "category": "Sunscreens",
+    "size": "40 g",
+    "price": 10.5,
+    "stock": 14,
+    "skinType": "All Skin Types",
+    "ingredients": [
+      "SPF 50+ PA++++",
+      "Water-Resistant UV Filters",
+      "CICA Extract",
+      "Powder Softening Base"
+    ],
+    "description": "Provides daily sun and UV water resistance. The clear white tone-up formula visually brightens the complexion, softens the look of uneven texture, and maintains moisture without added fragrances.",
+    "howToUse": "Apply evenly across face and neck 15 minutes before stepping into the sun. Reapply as needed.",
+    "image": "image/by365 Powdery UV Cream - No Color.jpg"
+  },
+  {
+    "id": "SKU-104",
+    "name": "Centellian24 Madeca Cream Time Reverse Zero",
+    "category": "Moisturizers",
+    "size": "80 ml (2.70 fl oz)",
+    "price": 0,
+    "stock": 10,
+    "skinType": "Sensitive, Compromised Skin",
+    "ingredients": [
+      "Ceramide NP",
+      "Centella Asiatica Polypeptide",
+      "Retinol",
+      "Sodium DNA"
+    ],
+    "description": "A fragrance-free, anti-aging dermatological cream formulated specifically for sensitive skin. It visibly smooths fine lines, firms the skin, calms reactive areas, and repairs the skin barrier without causing irritation.",
+    "howToUse": "Smooth a moderate amount over face and neck morning and night to calm and repair the protective barrier.",
+    "image": "image/Centellian24 Madeca Cream Time Reverse Zero.jpg"
+  },
+  {
+    "id": "SKU-105",
+    "name": "Medicube Zero Pore Blackhead Mud Mask",
+    "category": "Masks",
+    "size": "100 g (3.52 oz)",
+    "price": 13,
+    "stock": 80,
+    "skinType": "Oily, Clogged & Blackhead-Prone Skin",
+    "ingredients": [
+      "AHA",
+      "BHA",
+      "PHA",
+      "30% Pore-Purifying Clays (Bentonite & Kaolin)"
+    ],
+    "description": "A 3-minute quick-dry mask that exfoliates, unclogs pores, visibly reduces blackheads, and controls excess sebum while providing a soothing cooling effect.",
+    "howToUse": "Apply an even layer over clean skin. Let dry for 3 minutes, then rinse off thoroughly with lukewarm water.",
+    "image": "image/Medicube Zero Pore Blackhead Mud Mask.jpg"
+  },
+  {
+    "id": "SKU-106",
+    "name": "Numbuzin No. 5 Mask",
+    "category": "Masks",
+    "size": "27 ml (1 Sheet)",
+    "price": 6.5,
+    "stock": 22,
+    "skinType": "Dull, Uneven & Blemish-Prone Skin",
+    "ingredients": [
+      "Niacinamide",
+      "Vitamin C",
+      "Glutathione",
+      "Hyaluronic Acid"
+    ],
+    "description": "Brightens the complexion, provides a glowing effect, hydrates, and offers soothing and anti-acne properties.",
+    "howToUse": "Place the sheet mask onto cleansed face for 10-20 minutes. Discard sheet and pat remaining essence into skin.",
+    "image": "image/Numbuzin No. 5 Mask.jpg"
+  },
+  {
+    "id": "SKU-107",
+    "name": "Senka Perfect Whip",
+    "category": "Cleansers",
+    "size": "120 g",
+    "price": 6,
+    "stock": 15,
+    "skinType": "All Skin Types",
+    "ingredients": [
+      "Sodium Hyaluronate",
+      "Sodium Acetylated Hyaluronate",
+      "Glycerin Base"
+    ],
+    "description": "A micro-beauty foam cleanser that effectively removes impurities while helping the skin maintain its protective moisture barrier.",
+    "howToUse": "Dispense a pea-sized amount, lather with water to create dense micro-foam, massage onto face, and rinse.",
+    "image": "image/Senka Perfect Whip.jpg"
+  },
+  {
+    "id": "SKU-108",
+    "name": "numbuzin No. 1 Clear Filter Sun Essence SPF50+ PA++++",
+    "category": "sunscreens",
+    "size": "50 ml (1 Sheet)",
+    "price": 10,
+    "stock": 30,
+    "skinType": "Sensitive, Acne-prone, Oily",
+    "ingredients": [
+      "Licorice Root Water, Centella Asiatica Extract, Heartleaf Extract, Niacinamide, Hyaluronic Acid"
+    ],
+    "description": "A lightweight, watery chemical sun essence offering SPF50+ PA++++ broad-spectrum protection. Infused with calming herb extracts to cool heated skin, reduce redness, and hydrate without feeling greasy or leaving a white cast.",
+    "howToUse": "Apply an adequate amount evenly over face and neck as the last step of your morning skincare routine. Gently pat until fully absorbed, and reapply every 2 hours during prolonged outdoor exposure.",
+    "image": "image/numbuzin No. 1 Clear Filter Sun Essence SPF50+ PA++++.jpg"
+  },
+  {
+    "id": "SKU-109",
+    "name": "UNOVE No-Wash Water Ampoule Treatment (Tender Bloom)",
+    "category": "Hair Care",
+    "size": "200 ml (1 fl oz)",
+    "price": 13,
+    "stock": 25,
+    "skinType": "Damaged, Dry, Tangled, Frizzy, Permed or Colored Hair",
+    "ingredients": [
+      "Hydrolyzed Silk, Hydrolyzed Keratin, Amino Acids Complex, Camellia Japonica Seed Oil, Argan Kernel Oil, Olive Fruit Oil"
+    ],
+    "description": "A leave-in water ampoule spray packed with protein and amino acid nutrients to instantly detangle unruly strands, smooth split ends, and soften coarse, heat-damaged hair with a lightweight, non-sticky finish and floral-musk scent.",
+    "howToUse": "After towel-drying hair, spray evenly from a distance of 10–15 cm onto damp lengths and ends, then proceed with blow-drying or styling. Can also be applied lightly to dry hair to tame frizz.",
+    "image": "image/Unove no wash water ampoule treatment.jpg"
+  },
+  {
+    "id": "SKU-110",
+    "name": "Treecell Anti Dandruff Shampoo Ocean Breeze",
+    "category": "Hair Care",
+    "size": "520 ml (3.38 fl oz)",
+    "price": 9.5,
+    "stock": 40,
+    "skinType": "Flaky Scalp, Itchy Scalp, Oily Roots, Sensitive Scalp",
+    "ingredients": [
+      "Dandclean™ Complex, Salicylic Acid, Panthenol, Menthol, Centella Asiatica Extract, Hyaluronic Acid"
+    ],
+    "description": "A scalp-purifying anti-dandruff shampoo formulated with patented Dandclean™ to eliminate visible flakes, alleviate persistent itching, and wash away excess sebum with a crisp ocean breeze cooling sensation.",
+    "howToUse": "Wet hair and scalp thoroughly with lukewarm water. Pump a moderate amount, massage into the scalp to build a rich cooling lather, leave for 1–2 minutes, and rinse thoroughly.",
+    "image": "image/Treecell anti dandruff shampoo.jpg"
+  },
+  {
+    "id": "SKU-111",
+    "name": "Treecell Night Collagen Shampoo Midnight Forest",
+    "category": "Hair Care",
+    "size": "520 ml (5.07 fl oz)",
+    "price": 9.5,
+    "stock": 35,
+    "skinType": "Oily Scalp, Sensitive Scalp, Fine or Thinning Hair, Hair Fall Concerns",
+    "ingredients": [
+      "Hydrolyzed Collagen (254Da), Salicylic Acid, Panthenol, Daucus Carota Sativa (Carrot) Leaf Extract, Menthol, Rosemary Leaf Oil"
+    ],
+    "description": "A specialized evening scalp care shampoo featuring low-molecular collagen to restore scalp elasticity, remove daily sebum and debris buildup, and calm the senses with a soothing midnight forest botanical fragrance.",
+    "howToUse": "Best used during night showers. Apply to wet hair and scalp, massage gently to deep-cleanse accumulated grime from the day, and rinse completely with lukewarm water.",
+    "image": "image/Treecell night collagen shampoo.jpg"
+  },
+  {
+    "id": "SKU-112",
+    "name": "Treecell Day Collagen Shampoo (Morning of Resort)",
+    "category": "Hair Care",
+    "size": "360 ml (1.69 fl oz)",
+    "price": 9.5,
+    "stock": 1,
+    "skinType": "Dry Scalp, Coarse Hair, Damaged Hair, Frizzy Strands",
+    "ingredients": [
+      "Hydrolyzed Collagen, Caffeine, Panthenol, Hydrolyzed Silk, Hydrolyzed Keratin, Niacinamide"
+    ],
+    "description": "A moisture-replenishing morning shampoo packed with collagen and silk proteins that detangles and smooths rough hair strands without needing a heavy separate conditioner, leaving a subtle citrus floral finish.",
+    "howToUse": "Apply onto wet hair and scalp in the morning. Gently massage into a silky lather to soften and nourish lengths and roots, then rinse thoroughly with lukewarm water..",
+    "image": "image/Treecell day collagen shampoo.jpg"
+  },
+  {
+    "id": "SKU-113",
+    "name": "ANESSA Brightening UV Sunscreen Gel Tone Up",
+    "category": "Sunscreen",
+    "size": "90 ml (6.76 fl oz)",
+    "price": 16.5,
+    "stock": 1,
+    "skinType": "Dull skin, Uneven skin tone, Normal to Dry",
+    "ingredients": [
+      "Tranexamic Acid, Dipotassium Glycyrrhizate, Camellia Sinensis (Green Tea) Leaf Extract, Tormentilla Root Extract, Sodium Hyaluronate, Soluble Collagen"
+    ],
+    "description": "A hydrating gel sunscreen offering SPF50+ PA++++ broad-spectrum defense infused with Tranexamic Acid to curb melanin formation and fade dark spots. Features a sheer lavender-pink tint that instantly corrects dullness and imparts a natural translucent glow.",
+    "howToUse": "Apply generously and evenly onto the face and neck as the final step of your morning skincare routine or as a brightening makeup primer base. Reapply after heavy sweating or toweling.",
+    "image": "image/anessa brightening uv sunscreen gel.jpg"
+  },
+  {
+    "id": "SKU-114",
+    "name": "d'Alba Piedmont White Truffle First Spray Serum",
+    "category": "Serums",
+    "size": "100 ml (1 fl oz)",
+    "price": 15.5,
+    "stock": 1,
+    "skinType": "Dry, Dehydrated, Dull, Sensitive",
+    "ingredients": [
+      "Italian Whiteves skin texture Truffle Extract (Tuber Magnatum), Tocopherol (Vitamin E), Avocado Oil, Sunflower Seed Oil, Niacinamide, Bifida Ferment Lysate"
+    ],
+    "description": "A bi-phase glowing mist combining a nourishing plant oil layer and a deeply hydrating serum layer enriched with Italian white truffle to deliver instant hydration, anti-aging elasticity, and a luminous glass-skin radiance without feeling sticky.",
+    "howToUse": "Shake well 3 to 5 times to thoroughly blend the oil and serum layers. Close eyes, hold 10–20 cm away from the face, and spritz evenly whenever skin feels dry, immediately after cleansing as a first-step serum, or over makeup for a dewy finish..",
+    "image": "image/D’alba first spray serum.jpg"
+  },
+  {
+    "id": "SKU-115",
+    "name": "ROUND LAB 1025 Dokdo Cleanser",
+    "category": "Cleansers",
+    "size": "150 ml (1.69 fl oz)",
+    "price": 7.5,
+    "stock": 1,
+    "skinType": "Sensitive, Dry",
+    "ingredients": [
+      "Deep Sea Water, Glycerin, Panthenol, Allantoin, Ceramide NP, Triple Hyaluronic Acid"
+    ],
+    "description": "A gentle, slightly acidic foaming cleanser that creates a dense micro-bubble lather to remove ultra-fine dust, excess oil, and impurities without stripping natural moisture.",
+    "howToUse": "Squeeze a small amount onto clean, wet palms and work into a rich foam with water. Gently massage across the face in circular motions, then rinse thoroughly with lukewarm water.",
+    "image": "image/ROUND LAB 1025 Dokdo Cleanser.jpg"
+  },
+  {
+    "id": "SKU-116",
+    "name": "B.LAB Perfect Balance 8:2 Matcha Hydrating Foam Cleanser",
+    "category": "Cleansers",
+    "size": "120 ml (4.1 fl oz)",
+    "price": 7,
+    "stock": 1,
+    "skinType": "All Skin Types, Sensitive, Oily",
+    "ingredients": [
+      "Camellia Sinensis (Matcha) Leaf Extract, Camellia Sinensis Leaf Powder, Centella Asiatica Extract, Hyaluronic Acid, Coconut-Derived Surfactants"
+    ],
+    "description": "A gentle, pH-balanced foaming cleanser infused with antioxidant-rich matcha green tea and centella asiatica to clear sebum and impurities without stripping moisture.",
+    "howToUse": "Squeeze a moderate amount onto clean, wet palms and work into a rich foam with water. Gently massage across damp skin in circular motions, then rinse thoroughly with lukewarm water.",
+    "image": "image/Blab perfect balance 8-2 cleanser.jpg"
+  },
+  {
+    "id": "SKU-117",
+    "name": "COSRX Ultra-Light Invisible Sunscreen SPF 50 PA++++",
+    "category": "Sunscreens",
+    "size": "50 ml (1.69 fl oz)",
+    "price": 9.5,
+    "stock": 1,
+    "skinType": "All Skin Types, Sensitive",
+    "ingredients": [
+      "Aloe Barbadensis Leaf Water, Hamamelis Virginiana (Witch Hazel) Leaf Water, Sodium Hyaluronate, Niacinamide, Tocopherol, Allantoin"
+    ],
+    "description": "An ultra-lightweight, invisible chemical sunscreen that absorbs quickly with zero white cast, providing daily UV defense and refreshing hydration.",
+    "howToUse": "Apply evenly to the face and neck 15 minutes before sun exposure as the final step of your morning skincare routine. Reapply every 2 hours as needed.",
+    "image": "image/cosrx ultra light invisible sunscreen.jpg"
+  },
+  {
+    "id": "SKU-118",
+    "name": "iUNIK Centella Calming Gel Cream",
+    "category": "Moisturizers",
+    "size": "60 ml (2.02 fl oz)",
+    "price": 9.25,
+    "stock": 1,
+    "skinType": "Oily, Combination, Acne-Prone, Sensitive",
+    "ingredients": [
+      "Centella Asiatica Leaf Water (72%), Melaleuca Alternifolia (Tea Tree) Leaf Water (10%), Niacinamide, Adenosine, Allantoin"
+    ],
+    "description": "A refreshing, oil-free gel cream enriched with centella asiatica and tea tree leaf water to soothe irritation, blemishes, and redness while keeping skin hydrated.",
+    "howToUse": "After cleansing and toning, take an appropriate amount and smooth evenly over the face and neck, gently tapping until fully absorbed.",
+    "image": "image/iunik centella calming gel cream.jpg"
+  },
+  {
+    "id": "SKU-119",
+    "name": "Judydoll Liquid Contour & Under Eye Brightening Duo - #01 Fair With Cool Undertones",
+    "category": "Makeup",
+    "size": "4.8 g",
+    "price": 7,
+    "stock": 1,
+    "skinType": "All Skin Types",
+    "ingredients": [
+      "Dimethicone, Isododecane, Silica, Mica, Titanium Dioxide, Iron Oxides"
+    ],
+    "description": "A dual-ended liquid contour and brightening wand with a cool grayish-brown contour shade to sculpt natural shadows and a cool-toned brightener to lift dull under-eyes.",
+    "howToUse": "Dab the contour tip along cheekbones, jawline, and nose sides, then blend smoothly. Dot the brightening applicator under the eyes and pat lightly to set.",
+    "image": "image/judydoll liquid contour 01.jpg"
+  },
+  {
+    "id": "SKU-120",
+    "name": "Judydoll Liquid Contour & Under Eye Brightening Duo - #02 Fair With Warm Undertones",
+    "category": "Makeup",
+    "size": "4.8 g",
+    "price": 7,
+    "stock": 1,
+    "skinType": "All Skin Types",
+    "ingredients": [
+      "Dimethicone, Isododecane, Silica, Mica, Titanium Dioxide, Iron Oxides"
+    ],
+    "description": "A 2-in-1 dual-ended liquid contour and concealer featuring a warm brown shading wand to add natural depth and a warm beige brightener to neutralize dark circles.",
+    "howToUse": "Apply the contour wand along the hairline and nose contour to blend seamlessly. Dot the brightening wand under the eyes and high points of the face to illuminate.",
+    "image": "image/judydoll liquid contour 02.jpg"
+  },
+  {
+    "id": "SKU-121",
+    "name": "rejuran nutritive cream c-pdrn 0.2",
+    "category": "Moisturizers",
+    "size": "50 ml (1.69 fl oz)",
+    "price": 36,
+    "stock": 1,
+    "skinType": "Dry, Sensitive, Mature, Stressed Skin",
+    "ingredients": [
+      "Hydrolyzed DNA (c-PDRN 0.2%), Glycerin, Shea Butter, Niacinamide, Ceramide NP, Adenosine, Jojoba Seed Oil"
+    ],
+    "description": "A rich nutritive barrier cream formulated with c-PDRN to strengthen stressed skin protection, deeply nourish, and improve skin elasticity.",
+    "howToUse": "Apply an appropriate amount evenly across the face and neck morning and night as the final step of your skincare routine, gently pressing for absorption.",
+    "image": "image/rejuran nutritive cream c-pdrn 0.2.jpg"
+  },
+  {
+    "id": "SKU-122",
+    "name": "REJURAN Skin Protection Mask",
+    "category": "Masks",
+    "size": "27 ml (0.91 fl oz)",
+    "price": 18,
+    "stock": 1,
+    "skinType": "All Skin Types, Tired, Stressed, Sensitive Skin",
+    "ingredients": [
+      "Hydrolyzed DNA (c-PDRN), Water, Glycerin, Niacinamide, Centella Asiatica Extract, Sodium Hyaluronate, Adenosine"
+    ],
+    "description": "A premium care sheet mask enriched with c-PDRN that transforms tired, stressed skin from external environmental aggressors into a moist, healthy condition.",
+    "howToUse": "After cleansing and toning, place the sheet mask evenly over the face. Leave on for 10-20 minutes, then remove and gently pat remaining essence into the skin.",
+    "image": "image/rejuran skin protection mask.jpg"
+  },
+  {
+    "id": "SKU-123",
+    "name": "REJURAN Turnover Ampoule c-PDRN 0.5%",
+    "category": "Serums",
+    "size": "50 ml (1.69 fl oz)",
+    "price": 42,
+    "stock": 1,
+    "skinType": "All Skin Types, Aging, Dull, Sensitive Skin",
+    "ingredients": [
+      "Rubus Fruticosus (Blackberry) Leaf Extract, Hydrolyzed DNA (c-PDRN 0.5%), Glycerin, Niacinamide, Sodium Hyaluronate, Adenosine"
+    ],
+    "description": "A premium anti-aging turnover ampoule formulated with high-concentration c-PDRN to accelerate natural renewal, refine texture, and restore firmness.",
+    "howToUse": "After toning, dispense a moderate amount using the dropper and smooth evenly across the face and neck, lightly tapping until fully absorbed.",
+    "image": "image/rejuran turnover ampoule.jpg"
+  },
+  {
+    "id": "SKU-124",
+    "name": "weYOUNG Brightening Cleansing Water",
+    "category": "Cleansers",
+    "size": "300 ml (10.14 fl oz)",
+    "price": 12.5,
+    "stock": 1,
+    "skinType": "All Skin Types, Dull, Sensitive Skin",
+    "ingredients": [
+      "Water, Dipropylene Glycol, PEG-6 Caprylic/Capric Glycerides, Niacinamide, Citrus Limon (Lemon) Fruit Extract, Panthenol, Centella Asiatica Extract"
+    ],
+    "description": "A gentle micellar cleansing water that thoroughly lifts makeup, sunscreen, and daily impurities while brightening and refreshing the complexion.",
+    "howToUse": "Soak a cotton pad thoroughly and gently wipe across the face from center outwards. For stubborn makeup, hold the pad over the area for 5-10 seconds before wiping away.",
+    "image": "image/weyoung cleansing water.jpg"
+  },
+  {
+    "id": "SKU-125",
+    "name": "weYOUNG Premium Cotton Pad",
+    "category": "Accessories",
+    "size": "80 pcs",
+    "price": 3.5,
+    "stock": 1,
+    "skinType": "All Skin Types, Sensitive Skin",
+    "ingredients": [
+      "100% Pure Natural Cotton, Lint-Free Sealed Edges"
+    ],
+    "description": "Ultra-soft, lint-free multi-layer cotton pads designed for gentle cleansing water and toner application without absorbing excess product.",
+    "howToUse": "Dispense cleansing water or toner onto the cotton pad and sweep smoothly across the skin, or split to use as a targeted toner pack.",
+    "image": "image/weyoung cotton pad.jpg"
+  }
+]
