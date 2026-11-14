@@ -1,14 +1,25 @@
-import React from 'react';
-import { X, Send } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, ShoppingCart, Check } from 'lucide-react';
 import { formatRiel } from '../utils.js';
 
-export default function ProductDetailModal({ product, onClose, onOrder }) {
+export default function ProductDetailModal({ product, onClose, onAddToCart }) {
   if (!product) return null;
 
   const isOutOfStock = product.stock <= 0;
+  const [justAdded, setJustAdded] = useState(false);
+
+  const handleAdd = () => {
+    if (isOutOfStock) return;
+    onAddToCart(product);
+    setJustAdded(true);
+    setTimeout(() => {
+      setJustAdded(false);
+      onClose();
+    }, 600);
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-150">
       <div className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200 flex flex-col max-h-[90vh]">
         
         {/* Header Image */}
@@ -27,6 +38,11 @@ export default function ProductDetailModal({ product, onClose, onOrder }) {
           </button>
           <span className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white uppercase tracking-wider">
             {product.category}
+          </span>
+          <span className={`absolute bottom-3 right-3 px-2.5 py-1 rounded-md text-[11px] font-bold ${
+            isOutOfStock ? 'bg-red-100 text-red-700' : 'bg-emerald-100 text-emerald-800'
+          }`}>
+            {isOutOfStock ? 'Out of Stock' : 'In Stock'}
           </span>
         </div>
 
@@ -76,18 +92,26 @@ export default function ProductDetailModal({ product, onClose, onOrder }) {
         <div className="p-4 border-t border-slate-100 bg-slate-50 flex items-center justify-between gap-3">
           <button 
             disabled={isOutOfStock}
-            onClick={() => {
-              onClose();
-              onOrder(product);
-            }} 
+            onClick={handleAdd}
             className={`inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition shadow-sm ${
               isOutOfStock 
                 ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                : 'bg-sky-600 hover:bg-sky-700 text-white'
+                : justAdded
+                ? 'bg-emerald-600 text-white'
+                : 'bg-emerald-700 hover:bg-emerald-800 text-white'
             }`}
           >
-            <Send className="w-3.5 h-3.5" />
-            <span>Order via Telegram</span>
+            {justAdded ? (
+              <>
+                <Check className="w-4 h-4" />
+                <span>Added to Cart!</span>
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="w-4 h-4" />
+                <span>Add to Cart</span>
+              </>
+            )}
           </button>
           <button 
             onClick={onClose} 
@@ -101,4 +125,3 @@ export default function ProductDetailModal({ product, onClose, onOrder }) {
     </div>
   );
 }
-

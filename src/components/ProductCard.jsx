@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { formatRiel } from '../utils.js';
-import { Send, Eye } from 'lucide-react';
+import { Eye, ShoppingCart, Check } from 'lucide-react';
 
-export default function ProductCard({ product, onSelect, onOrder }) {
+export default function ProductCard({ product, onSelect, onAddToCart, isInCart }) {
   const isOutOfStock = product.stock <= 0;
+  const [justAdded, setJustAdded] = useState(false);
+
+  const handleAdd = () => {
+    if (isOutOfStock) return;
+    onAddToCart(product);
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1200);
+  };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col group">
+    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition-all duration-200 flex flex-col group">
       
       {/* Image Wrap */}
       <div 
@@ -25,16 +33,16 @@ export default function ProductCard({ product, onSelect, onOrder }) {
           {product.category}
         </span>
 
-        {/* Stock Badge */}
+        {/* Stock Badge - ONLY in stock or out of stock */}
         {isOutOfStock ? (
           <span className="absolute top-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-bold bg-red-100 text-red-700 border border-red-200">
             Out of Stock
           </span>
-        ) : product.stock < 5 ? (
-          <span className="absolute top-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
-            Low Stock ({product.stock})
+        ) : (
+          <span className="absolute top-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+            In Stock
           </span>
-        ) : null}
+        )}
       </div>
 
       {/* Info Body */}
@@ -83,15 +91,26 @@ export default function ProductCard({ product, onSelect, onOrder }) {
             </button>
             <button
               disabled={isOutOfStock}
-              onClick={() => onOrder(product)}
+              onClick={handleAdd}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
                 isOutOfStock 
                   ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                  : 'bg-sky-600 hover:bg-sky-700 text-white shadow-xs'
+                  : justAdded
+                  ? 'bg-emerald-600 text-white'
+                  : 'bg-emerald-700 hover:bg-emerald-800 text-white shadow-xs'
               }`}
             >
-              <Send className="w-3.5 h-3.5" />
-              <span>Order</span>
+              {justAdded ? (
+                <>
+                  <Check className="w-3.5 h-3.5" />
+                  <span>Added!</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingCart className="w-3.5 h-3.5" />
+                  <span>Add to Cart</span>
+                </>
+              )}
             </button>
           </div>
         </div>
@@ -101,4 +120,3 @@ export default function ProductCard({ product, onSelect, onOrder }) {
     </div>
   );
 }
-

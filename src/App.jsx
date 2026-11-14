@@ -3,7 +3,7 @@ import initialProductsData from './data/products.json';
 import Navbar from './components/Navbar.jsx';
 import ProductCard from './components/ProductCard.jsx';
 import ProductDetailModal from './components/ProductDetailModal.jsx';
-import OrderModal from './components/OrderModal.jsx';
+import CartModal from './components/CartModal.jsx';
 import AdminDrawer from './components/AdminDrawer.jsx';
 import AuthModal from './components/AuthModal.jsx';
 import AddProductModal from './components/AddProductModal.jsx';
@@ -19,7 +19,7 @@ import {
 } from 'firebase/firestore';
 import { 
   Search, SlidersHorizontal, MapPin, PhoneCall, 
-  Share2, KeyRound, Droplets, ShoppingBag 
+  Share2, KeyRound, Droplets, ShoppingBag, ShoppingCart 
 } from 'lucide-react';
 
 const CATEGORIES = [
@@ -37,9 +37,63 @@ const CONCERNS = [
 ];
 
 export default function App() {
-  // Start with local data as immediate fallback
   const [products, setProducts] = useState(initialProductsData);
-  const [isFirebaseConnected, setIsFirebaseConnected] = useState(false);
+
+  // Cart State (Persisted in localStorage so customer doesn't lose their cart)
+  const [cart, setCart] = useState(() => {
+    try {
+      const savedCart = localStorage.getItem('WellyandCarey_cart_items');
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // Sync cart to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('WellyandCarey_cart_items', JSON.stringify(cart));
+    } catch (e) {
+      console.error("Cart save error", e);
+    }
+  }, [cart]);
+
+  // Cart actions
+  const handleAddToCart = (product) => {
+    setCart(prev => {
+      const existing = prev.find(item => item.id === product.id);
+      if (existing) {
+        return prev.map(item => 
+          item.id === product.id 
+            ? { ...item, quantity: Math.min(item.quantity + 1, product.stock || 99) } 
+            : item
+        );
+      }
+      return [...prev, { ...product, quantity: 1 }];
+    });
+    notify(`Added "${product.name}" to cart`);
+  };
+
+  const handleUpdateCartQuantity = (id, delta) => {
+    setCart(prev => prev.map(item => {
+      if (item.id === id) {
+        const nextQty = item.quantity + delta;
+        return nextQty > 0 ? { ...item, quantity: nextQty } : null;
+      }
+      return item;
+    }).filter(Boolean));
+  };
+
+  const handleRemoveFromCart = (id) => {
+    setCart(prev => prev.filter(item => item.id !== id));
+  };
+
+  const handleClearCart = () => {
+    setCart([]);
+    notify("Cart cleared");
+  };
 
   // Filter & Search states
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,7 +102,6 @@ export default function App() {
 
   // Modal states
   const [selectedProductDetail, setSelectedProductDetail] = useState(null);
-  const [selectedProductOrder, setSelectedProductOrder] = useState(null);
 
   // Admin states
   const [isAdmin, setIsAdmin] = useState(false);
@@ -70,28 +123,24 @@ export default function App() {
   useEffect(() => {
     const productsCol = collection(db, 'products');
 
-    // Auto-seed Firestore on first connection if empty
     const checkAndSeed = async () => {
       try {
         const snapshot = await getDocs(productsCol);
         if (snapshot.empty) {
-          console.log("Seeding initial 25 products to Firestore...");
           const batch = writeBatch(db);
           for (const p of initialProductsData) {
             const pRef = doc(db, 'products', p.id);
             batch.set(pRef, p);
           }
           await batch.commit();
-          console.log("Successfully seeded Firestore!");
         }
       } catch (err) {
-        console.warn("Firestore check/seed notice:", err.message);
+        console.warn("Firestore notice:", err.message);
       }
     };
 
     checkAndSeed();
 
-    // Listen to real-time changes across all devices
     const unsubscribe = onSnapshot(productsCol, (snapshot) => {
       if (!snapshot.empty) {
         const remoteProducts = [];
@@ -99,10 +148,9 @@ export default function App() {
           remoteProducts.push({ ...doc.data(), id: doc.id });
         });
         setProducts(remoteProducts);
-        setIsFirebaseConnected(true);
       }
     }, (error) => {
-      console.warn("Firestore real-time listener error, using local fallback:", error.message);
+      console.warn("Firestore listener notice:", error.message);
     });
 
     return () => unsubscribe();
@@ -152,15 +200,13 @@ export default function App() {
     if (!p) return;
     const newStock = Math.max(0, p.stock + delta);
 
-    // Optimistic UI update
     setProducts(prev => prev.map(item => item.id === id ? { ...item, stock: newStock } : item));
 
     try {
       const docRef = doc(db, 'products', id);
       await updateDoc(docRef, { stock: newStock });
-      notify("Stock synced live to cloud");
-    } catch (err) {
-      console.error("Failed to update cloud stock:", err);
+      notify("Stock synced to cloud");
+    } catch {
       notify("Stock updated locally");
     }
   };
@@ -170,29 +216,25 @@ export default function App() {
     const p = products.find(x => x.id === id);
     if (!p) return;
 
-    // Optimistic UI update
     setProducts(prev => prev.filter(x => x.id !== id));
 
     try {
       await deleteDoc(doc(db, 'products', id));
       notify(`Deleted "${p.name}" from cloud`);
-    } catch (err) {
-      console.error("Failed to delete from cloud:", err);
+    } catch {
       notify(`Deleted "${p.name}"`);
     }
   };
 
   // REAL-TIME PRODUCT ADD
   const handleAddProduct = async (newProd) => {
-    // Optimistic UI update
     setProducts(prev => [newProd, ...prev]);
 
     try {
       const docRef = doc(db, 'products', newProd.id);
       await setDoc(docRef, newProd);
       notify(`Added "${newProd.name}" to cloud database`);
-    } catch (err) {
-      console.error("Failed to add to cloud:", err);
+    } catch {
       notify(`Added "${newProd.name}" locally`);
     }
   };
@@ -230,21 +272,27 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const totalCartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800">
       
-      {/* TOP BAR */}
-      <Navbar onReset={resetAllFilters} />
+      {/* TOP BAR WITH CART BUTTON */}
+      <Navbar 
+        onReset={resetAllFilters} 
+        cartCount={totalCartCount} 
+        onOpenCart={() => setIsCartOpen(true)} 
+      />
 
       {/* MAIN CONTAINER */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 w-full flex-1">
         
         {/* Banner */}
-        <div className="mb-6 p-6 rounded-2xl bg-emerald-950 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+        <div className="mb-6 p-6 rounded-2xl bg-emerald-950 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight">Best Skincare</h1>
             <p className="text-xs sm:text-sm text-emerald-200 mt-1 max-w-xl">
-              Great choice, Great quality, Great results.
+              Great choice, Great quality, Great results. Add items to your cart and order together in one message.
             </p>
           </div>
           <div className="text-xs text-emerald-100 border border-emerald-800 bg-emerald-900/60 px-3.5 py-1.5 rounded-lg flex items-center gap-2">
@@ -314,7 +362,8 @@ export default function App() {
                 key={product.id} 
                 product={product} 
                 onSelect={setSelectedProductDetail}
-                onOrder={setSelectedProductOrder}
+                onAddToCart={handleAddToCart}
+                isInCart={cart.some(item => item.id === product.id)}
               />
             ))}
           </div>
@@ -412,7 +461,21 @@ export default function App() {
         </div>
       </footer>
 
-      {/* OWNER ACCESS FLOATING BUTTON */}
+      {/* FLOATING ACTION BUTTONS */}
+      {/* 1. Floating Cart Pill (Bottom Right) */}
+      {totalCartCount > 0 && (
+        <div className="fixed bottom-6 right-6 z-40 animate-in fade-in slide-in-from-bottom-4 duration-200">
+          <button 
+            onClick={() => setIsCartOpen(true)}
+            className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-xs shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            <span>View Cart ({totalCartCount})</span>
+          </button>
+        </div>
+      )}
+
+      {/* 2. Owner Access (Bottom Left) */}
       <div className="fixed bottom-6 left-6 z-40 group">
         <button 
           onClick={() => {
@@ -431,7 +494,7 @@ export default function App() {
 
       {/* TOAST NOTIFICATION */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-slate-900 text-white text-xs font-medium px-4 py-2.5 rounded-xl shadow-xl animate-in fade-in slide-in-from-bottom-2 duration-200">
+        <div className="fixed bottom-20 right-6 z-50 bg-slate-900 text-white text-xs font-medium px-4 py-2.5 rounded-xl shadow-xl animate-in fade-in slide-in-from-bottom-2 duration-200">
           {toastMessage}
         </div>
       )}
@@ -440,12 +503,16 @@ export default function App() {
       <ProductDetailModal 
         product={selectedProductDetail} 
         onClose={() => setSelectedProductDetail(null)}
-        onOrder={setSelectedProductOrder}
+        onAddToCart={handleAddToCart}
       />
 
-      <OrderModal 
-        product={selectedProductOrder}
-        onClose={() => setSelectedProductOrder(null)}
+      <CartModal 
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cart={cart}
+        onUpdateQuantity={handleUpdateCartQuantity}
+        onRemoveFromCart={handleRemoveFromCart}
+        onClearCart={handleClearCart}
       />
 
       <AdminDrawer 
