@@ -6,7 +6,7 @@ const CATEGORIES = [
   'Masks', 'Shampoo', 'Conditioner', 'Hair Care', 'Accessories'
 ];
 
-export default function AddProductModal({ isOpen, onClose, onAdd, totalCount }) {
+export default function AddProductModal({ isOpen, onClose, onAdd, existingProducts = [] }) {
   if (!isOpen) return null;
 
   const [name, setName] = useState('');
@@ -23,6 +23,24 @@ export default function AddProductModal({ isOpen, onClose, onAdd, totalCount }) 
   const [imagePreview, setImagePreview] = useState('');
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
+
+  const resetForm = () => {
+    setName('');
+    setCategory('Cleansers');
+    setSize('');
+    setPrice('');
+    setStock('10');
+    setSkinType('All skin types');
+    setIngredients('');
+    setDescription('');
+    setHowToUse('');
+    setImagePreview('');
+  };
+
+  const handleClose = () => {
+    resetForm();
+    onClose();
+  };
 
   // Resize and convert image to lightweight Base64 web-safe string
   const processImageFile = (file) => {
@@ -89,7 +107,18 @@ export default function AddProductModal({ isOpen, onClose, onAdd, totalCount }) 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newId = `SKU-${100 + totalCount + 1}`;
+
+    // Find highest SKU number in database to guarantee a 100% unique ID that never overwrites
+    const existingNumbers = existingProducts
+      .map(p => {
+        const match = p.id && p.id.match(/^SKU-(\d+)$/);
+        return match ? parseInt(match[1], 10) : 0;
+      })
+      .filter(n => !isNaN(n));
+    
+    const maxNum = existingNumbers.length > 0 ? Math.max(...existingNumbers) : 100;
+    const newId = `SKU-${maxNum + 1}`;
+
     const newProd = {
       id: newId,
       name: name.trim(),
@@ -105,6 +134,7 @@ export default function AddProductModal({ isOpen, onClose, onAdd, totalCount }) 
     };
 
     onAdd(newProd);
+    resetForm();
     onClose();
   };
 
@@ -119,7 +149,7 @@ export default function AddProductModal({ isOpen, onClose, onAdd, totalCount }) 
             </div>
             <h3 className="text-sm font-bold text-slate-900">Add New Product</h3>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-600 p-1">
+          <button onClick={handleClose} className="text-slate-400 hover:text-slate-600 p-1">
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -278,7 +308,7 @@ export default function AddProductModal({ isOpen, onClose, onAdd, totalCount }) 
           <div className="flex gap-2 pt-2 border-t border-slate-100">
             <button 
               type="button"
-              onClick={onClose} 
+              onClick={handleClose} 
               className="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition"
             >
               Cancel

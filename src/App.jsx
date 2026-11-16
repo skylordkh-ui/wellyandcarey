@@ -599,7 +599,7 @@ export default function App() {
         isOpen={isAddProductOpen}
         onClose={() => setIsAddProductOpen(false)}
         onAdd={handleAddProduct}
-        totalCount={products.length}
+        existingProducts={products}
       />
 
       <EditProductModal 
