@@ -7,6 +7,7 @@ import CartModal from './components/CartModal.jsx';
 import AdminDrawer from './components/AdminDrawer.jsx';
 import AuthModal from './components/AuthModal.jsx';
 import AddProductModal from './components/AddProductModal.jsx';
+import EditProductModal from './components/EditProductModal.jsx';
 import { 
   SESSION_KEY_AUTH, 
   SESSION_KEY_LAST_ACTIVE, 
@@ -108,6 +109,7 @@ export default function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isAddProductOpen, setIsAddProductOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
 
   // Toast notification
   const [toastMessage, setToastMessage] = useState('');
@@ -236,6 +238,19 @@ export default function App() {
       notify(`Added "${newProd.name}" to cloud database`);
     } catch {
       notify(`Added "${newProd.name}" locally`);
+    }
+  };
+
+  // REAL-TIME PRODUCT EDIT
+  const handleSaveEditedProduct = async (updatedProduct) => {
+    setProducts(prev => prev.map(p => p.id === updatedProduct.id ? updatedProduct : p));
+
+    try {
+      const docRef = doc(db, 'products', updatedProduct.id);
+      await setDoc(docRef, updatedProduct, { merge: true });
+      notify(`Updated "${updatedProduct.name}" in cloud database`);
+    } catch {
+      notify(`Updated "${updatedProduct.name}" locally`);
     }
   };
 
@@ -522,6 +537,7 @@ export default function App() {
         onUpdateStock={handleUpdateStock}
         onDeleteProduct={handleDeleteProduct}
         onOpenAddModal={() => setIsAddProductOpen(true)}
+        onEditProduct={(prod) => setEditingProduct(prod)}
         onLogout={handleLogout}
         onNotify={notify}
       />
@@ -538,6 +554,13 @@ export default function App() {
         onClose={() => setIsAddProductOpen(false)}
         onAdd={handleAddProduct}
         totalCount={products.length}
+      />
+
+      <EditProductModal 
+        isOpen={!!editingProduct}
+        product={editingProduct}
+        onClose={() => setEditingProduct(null)}
+        onSave={handleSaveEditedProduct}
       />
 
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   ShieldCheck, X, LogOut, Download, Plus, 
-  Trash2, Search 
+  Trash2, Search, Edit3 
 } from 'lucide-react';
 
 export default function AdminDrawer({ 
@@ -11,6 +11,7 @@ export default function AdminDrawer({
   onUpdateStock, 
   onDeleteProduct, 
   onOpenAddModal, 
+  onEditProduct,
   onLogout,
   onNotify
 }) {
@@ -156,7 +157,7 @@ export default function AdminDrawer({
                   <th className="py-2.5 px-2">Price</th>
                   <th className="py-2.5 px-2 text-center">Units</th>
                   <th className="py-2.5 px-2">Status</th>
-                  <th className="py-2.5 px-3 text-right">Action</th>
+                  <th className="py-2.5 px-3 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 bg-white">
@@ -170,7 +171,7 @@ export default function AdminDrawer({
                           className="w-8 h-8 rounded object-contain bg-slate-50 border border-slate-200 p-0.5" 
                           onError={(e) => { e.currentTarget.src = 'https://placehold.co/40x40/e2e8f0/64748b?text=P'; }}
                         />
-                        <div className="max-w-[140px]">
+                        <div className="max-w-[130px]">
                           <span className="font-semibold text-slate-900 block truncate" title={p.name}>{p.name}</span>
                           <span className="text-[10px] text-slate-400">{p.id}</span>
                         </div>
@@ -207,13 +208,22 @@ export default function AdminDrawer({
                       )}
                     </td>
                     <td className="py-2.5 px-3 text-right">
-                      <button 
-                        onClick={() => onDeleteProduct(p.id)}
-                        className="p-1 rounded text-slate-400 hover:text-red-600 hover:bg-red-50 transition"
-                        title="Delete product"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
+                      <div className="flex items-center justify-end gap-1">
+                        <button 
+                          onClick={() => onEditProduct(p)}
+                          className="p-1 rounded text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 transition"
+                          title="Edit full product details"
+                        >
+                          <Edit3 className="w-3.5 h-3.5" />
+                        </button>
+                        <button 
+                          onClick={() => onDeleteProduct(p.id)}
+                          className="p-1 rounded text-slate-400 hover:text-red-600 hover:bg-red-50 transition"
+                          title="Delete product"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
