@@ -8,14 +8,8 @@ export default function Navbar({ onReset, cartCount, onOpenCart }) {
         
         {/* Brand */}
         <div className="flex items-center gap-2.5 cursor-pointer" onClick={onReset}>
-          <img 
-            src="image/welly_logo.png" 
-            alt="WellyandCarey Logo" 
-            className="w-10 h-10 object-contain rounded-lg"
-            onError={(e) => { e.currentTarget.src = ''; }}
-          />
           <div>
-            <span className="font-bold text-base tracking-wide text-slate-900 block leading-tight">WellyandCarey</span>
+            <span className="font-bold text-base sm:text-lg tracking-wide text-slate-900 block leading-tight">WellyandCarey</span>
             <span className="text-[11px] text-slate-400 uppercase tracking-wider block">Best Care</span>
           </div>
         </div>
