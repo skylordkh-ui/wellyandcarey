@@ -12,7 +12,7 @@ export default function Navbar({ onReset, cartCount, onOpenCart }) {
             src="image/welly_logo.png" 
             alt="WellyandCarey Logo" 
             className="w-10 h-10 object-contain rounded-lg"
-            onError={(e) => { e.currentTarget.src = 'https://placehold.co/80x80/1c3627/ffffff?text=W'; }}
+            onError={(e) => { e.currentTarget.src = ''; }}
           />
           <div>
             <span className="font-bold text-base tracking-wide text-slate-900 block leading-tight">WellyandCarey</span>
