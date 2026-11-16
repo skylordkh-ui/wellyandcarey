@@ -25,7 +25,7 @@ import {
 } from 'lucide-react';
 
 const CATEGORIES = [
-  'All', 'Cleansers', 'Serums', 'Moisturizers', 
+  'All', 'Cleansers', 'Toners', 'Serums', 'Moisturizers', 
   'Sunscreens', 'Masks', 'Shampoo', 'Conditioner', 
   'Hair Care', 'Accessories'
 ];

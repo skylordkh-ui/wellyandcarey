@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { X, Edit3, UploadCloud, Trash2 } from 'lucide-react';
 
 const CATEGORIES = [
-  'Cleansers', 'Serums', 'Moisturizers', 'Sunscreens', 
+  'Cleansers', 'Toners', 'Serums', 'Moisturizers', 'Sunscreens', 
   'Masks', 'Shampoo', 'Conditioner', 'Hair Care', 'Accessories'
 ];
 

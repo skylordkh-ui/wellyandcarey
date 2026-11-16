@@ -393,5 +393,81 @@
     "description": "Ultra-soft, lint-free multi-layer cotton pads designed for gentle cleansing water and toner application without absorbing excess product.",
     "howToUse": "Dispense cleansing water or toner onto the cotton pad and sweep smoothly across the skin, or split to use as a targeted toner pack.",
     "image": "image/weyoung_cotton_pad.jpg"
+  },
+  {
+    "id": "SKU-126",
+    "name": "Anua Heartleaf 70 Soothing Collagen Mask",
+    "category": "Masks",
+    "size": "4 pcs (38 g / 1.34 oz. each)",
+    "price": 21,
+    "stock": 1,
+    "skinType": "All Skin Types, Sensitive Skin",
+    "ingredients": [
+      "Houttuynia Cordata (Heartleaf) Flower/Leaf/Stem Water (70%)",
+      "Low-Molecular Soluble Collagen",
+      "Hyaluronic Acid",
+      "Aloe Barbadensis Leaf Extract",
+      "Dipotassium Glycyrrhizate"
+    ],
+    "description": "A color-changing hydrogel sheet mask infused with 70% heartleaf water and low-molecular collagen to deeply hydrate, calm redness, and improve skin elasticity and smoothness.",
+    "howToUse": "After cleansing and toning, remove the films from the upper and lower mask pieces and apply them evenly to your face. Leave on for 3 to 4 hours (or overnight) until the mask turns transparent, then remove and gently pat the remaining essence into the skin.",
+    "image": "https://placehold.co/400x300/e2e8f0/64748b?text=Anua+Mask"
+  },
+  {
+    "id": "SKU-127",
+    "name": "Purito SEOUL Mighty Bamboo Panthenol Cream",
+    "category": "Moisturizers",
+    "size": "100 ml",
+    "price": 23,
+    "stock": 1,
+    "skinType": "All Skin Types, Dry Skin, Sensitive Skin",
+    "ingredients": [
+      "Panthenol (10%)",
+      "Bambusa Vulgaris (Damyang Bamboo) Extract",
+      "Squalane",
+      "Niacinamide",
+      "Dipotassium Glycyrrhizate"
+    ],
+    "description": "A lightweight, fast-absorbing barrier-repair moisturizer formulated with 10% panthenol and Korean bamboo extract to lock in moisture, calm irritation, and deliver a non-greasy dewy finish.",
+    "howToUse": "Take an appropriate amount as the final step of your skincare routine and apply evenly to the face and neck, patting gently to aid absorption.",
+    "image": "https://placehold.co/400x300/e2e8f0/64748b?text=Purito+Cream"
+  },
+  {
+    "id": "SKU-128",
+    "name": "ROUND LAB Birch Juice Moisturizing Sunscreen SPF50+ PA++++",
+    "category": "Sunscreens",
+    "size": "50 ml",
+    "price": 25,
+    "stock": 1,
+    "skinType": "All Skin Types, Dry Skin, Sensitive Skin",
+    "ingredients": [
+      "Betula Platyphylla Japonica (Birch) Juice",
+      "Sodium Hyaluronate (Vita Hyaluronic Acid)",
+      "Niacinamide",
+      "Allantoin",
+      "Dipotassium Glycyrrhizate"
+    ],
+    "description": "A hydrating chemical sunscreen with SPF50+ PA++++ broad-spectrum UV protection enriched with birch sap and hyaluronic acid that blends seamlessly with no white cast.",
+    "howToUse": "Apply liberally and evenly across the face and neck as the final step of your morning skincare routine, 15 minutes before sun exposure. Reapply every 2 hours when outdoors.",
+    "image": "https://placehold.co/400x300/e2e8f0/64748b?text=Round+Lab+Sunscreen"
+  },
+  {
+    "id": "SKU-129",
+    "name": "The Ordinary Glycolic Acid 7% Toning Solution",
+    "category": "Toners",
+    "size": "240 ml",
+    "price": 13,
+    "stock": 1,
+    "skinType": "Normal Skin, Oily Skin, Combination Skin",
+    "ingredients": [
+      "Glycolic Acid (7%)",
+      "Tasmanian Pepperberry Extract",
+      "Panax Ginseng Root Extract",
+      "Aloe Barbadensis Leaf Water",
+      "Amino Acids"
+    ],
+    "description": "A water-based exfoliating toner formulated with 7% alpha-hydroxy acid (AHA) to gently buff away dead skin cells, refine rough texture, and promote visibly brighter, more even-toned skin.",
+    "howToUse": "Use once daily, ideally in the evening. After cleansing, saturate a cotton pad with the formula and sweep across the face and neck, avoiding the eye contour. Do not rinse off, and always wear sunscreen during the day.",
+    "image": "https://placehold.co/400x300/e2e8f0/64748b?text=The+Ordinary+Toner"
   }
 ]

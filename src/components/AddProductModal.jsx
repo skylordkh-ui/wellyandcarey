@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { X, PlusCircle, UploadCloud, Image as ImageIcon, Trash2 } from 'lucide-react';
 
 const CATEGORIES = [
-  'Cleansers', 'Serums', 'Moisturizers', 'Sunscreens', 
+  'Cleansers', 'Toners', 'Serums', 'Moisturizers', 'Sunscreens', 
   'Masks', 'Shampoo', 'Conditioner', 'Hair Care', 'Accessories'
 ];
 
