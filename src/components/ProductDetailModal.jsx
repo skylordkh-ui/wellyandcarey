@@ -23,11 +23,11 @@ export default function ProductDetailModal({ product, onClose, onAddToCart }) {
       <div className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200 flex flex-col max-h-[90vh]">
         
         {/* Header Image */}
-        <div className="relative h-64 bg-slate-100 flex items-center justify-center p-4">
+        <div className="relative h-72 bg-white flex items-center justify-center p-6 border-b border-slate-100">
           <img 
             src={product.image} 
             alt={product.name} 
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain mix-blend-multiply"
             onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x300/e2e8f0/64748b?text=Product'; }}
           />
           <button 

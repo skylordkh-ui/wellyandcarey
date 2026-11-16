@@ -18,13 +18,13 @@ export default function ProductCard({ product, onSelect, onAddToCart, isInCart }
       
       {/* Image Wrap */}
       <div 
-        className="relative h-56 bg-slate-100 cursor-pointer overflow-hidden flex items-center justify-center p-4"
+        className="relative h-64 bg-white cursor-pointer overflow-hidden flex items-center justify-center p-3 border-b border-slate-100"
         onClick={() => onSelect(product)}
       >
         <img 
           src={product.image} 
           alt={product.name}
-          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
           onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x300/e2e8f0/64748b?text=Product'; }}
         />
         
